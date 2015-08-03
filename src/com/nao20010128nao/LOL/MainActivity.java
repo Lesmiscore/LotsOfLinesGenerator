@@ -6,6 +6,7 @@ import android.view.*;
 import android.widget.*;
 import java.io.*;
 import java.util.*;
+import android.text.*;
 
 public class MainActivity extends Activity
 {
@@ -27,6 +28,7 @@ public class MainActivity extends Activity
 				char[] buf=new char[len];
 				Arrays.fill(buf,'\n');
 				result.setText(buf,0,buf.length);
+				((ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setText(new String(buf));
 			}
 		});
     }
