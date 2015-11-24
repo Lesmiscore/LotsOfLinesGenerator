@@ -24,11 +24,19 @@ public class MainActivity extends Activity
 		start.setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
 				result.setText("");
-				int len=Integer.parseInt(length.getText().toString());
-				char[] buf=new char[len];
-				Arrays.fill(buf,'\n');
-				result.setText(buf,0,buf.length);
-				((ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setText(new String(buf));
+				new Thread(){
+					public void run(){
+						int len=Integer.parseInt(length.getText().toString());
+						final char[] buf=new char[len];
+						Arrays.fill(buf,'\n');
+						runOnUiThread(new Runnable(){
+							public void run(){
+								//result.setText(buf,0,buf.length);
+								((ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setText(new String(buf));
+							}
+						});
+					}
+				};
 			}
 		});
     }
