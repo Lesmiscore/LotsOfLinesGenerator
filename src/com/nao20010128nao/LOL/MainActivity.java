@@ -33,6 +33,7 @@ public class MainActivity extends Activity
 							public void run(){
 								//result.setText(buf,0,buf.length);
 								((ClipboardManager)getSystemService(CLIPBOARD_SERVICE)).setText(new String(buf));
+								Toast.makeText(MainActivity.this,"Complete",Toast.LENGTH_LONG).show();
 							}
 						});
 					}
